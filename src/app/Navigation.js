@@ -9,6 +9,8 @@ import {useSelector} from 'react-redux';
 import {ProjectcreationScreen} from '../screens/Projectcreation';
 import {AllprojectsScreen} from '../screens/AllprojectsScreen';
 import {ProjecteditScreen} from '../screens/ProjecteditScreen';
+import {AllusersScreen} from '../screens/AllusersScreen';
+import {UsereditScreen} from '../screens/UsereditScreen';
 const Stack = createStackNavigator();
 
 export function Navigation() {
@@ -26,6 +28,8 @@ export function Navigation() {
             />
             <Stack.Screen name="Allprojects" component={AllprojectsScreen} />
             <Stack.Screen name="Projectedit" component={ProjecteditScreen} />
+            <Stack.Screen name="Allusers" component={AllusersScreen} />
+            <Stack.Screen name="Useredit" component={UsereditScreen} />
           </>
         ) : (
           <>

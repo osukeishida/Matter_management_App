@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import {ProjectcreationScreen} from './ProjectcreationScreen';
 import {AllprojectsScreen} from '../screens/AllprojectsScreen';
 import {ProjecteditScreen} from '../screens/ProjecteditScreen';
+import {AllusersScreen} from '../screens/AllusersScreen';
 
 export function HomeScreen() {
   const navigation = useNavigation();
@@ -23,6 +24,12 @@ export function HomeScreen() {
         title="全案件"
         onPress={() => {
           navigation.navigate('Allprojects');
+        }}
+      />
+      <Button
+        title="全ユーザー"
+        onPress={() => {
+          navigation.navigate('Allusers');
         }}
       />
       <Button title="ログアウト" onPress={() => dispatch(logout())} />

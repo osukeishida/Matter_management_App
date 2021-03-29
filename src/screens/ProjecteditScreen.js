@@ -25,15 +25,12 @@ export function ProjecteditScreen() {
   const tryProjectedit = async () => {
     console.log(token);
     try {
-      const skill = skills.split(',');
       const response = await myAxios.put(`/projects/${route.params.id}`, {
         name,
         description,
         customer,
-        skills: skill,
-        // assignees,
+        skills,
       });
-      // console.log(response);
       console.log(response);
       // TODO 案件作成完了ページ作成
       console.log('これ成功', response);
@@ -49,25 +46,21 @@ export function ProjecteditScreen() {
         style={styles.input}
         onChangeText={text => onChangeProjectname(text)}
         value={name}
-        // placeholder="projectname"
       />
       <TextInput
         style={styles.input}
         onChangeText={text => onChangeDescription(text)}
         value={description}
-        // placeholder="description"
       />
       <TextInput
         style={styles.input}
         onChangeText={text => onChangeCustomer(text)}
         value={customer}
-        // placeholder="customer"
       />
       <TextInput
         style={styles.input}
         onChangeText={text => onChangeSkills(text)}
         value={skills.join(',')}
-        // placeholder="skills"
       />
 
       {route.params.assignees.map(assignee => {
@@ -76,13 +69,11 @@ export function ProjecteditScreen() {
             key={assignee._id}
             // アサインは記入タイプではなくユーザー一覧選択
             style={styles.input}
-            // onChangeText={text => onChangeAssignees(text)}
             value={assignee.name}
-            // placeholder="assignees"
           />
         );
       })}
-      <Button onPress={() => getNames(route.params.assignees)} title="送信" />
+      <Button onPress={tryProjectedit} title="送信" />
       <Button title="戻る" onPress={() => navigation.goBack()} />
     </View>
   );
