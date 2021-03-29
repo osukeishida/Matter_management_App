@@ -36,10 +36,27 @@ export function AllprojectsScreen() {
       {projects.map(project => {
         return (
           <View key={project._id}>
-            <Text>{project.name}</Text>
+            <Button
+              title={project.name}
+              onPress={() => {
+                navigation.navigate('Projectedit', {
+                  id: project._id,
+                  name: project.name,
+                  customer: project.customer,
+                  description: project.description,
+                  skills: project.skills,
+                  assignees: project.assignees,
+                });
+              }}
+            />
             <Text>{project.customer}</Text>
             <Text>{project.description}</Text>
             <Text>{project.skills}</Text>
+            <Text>
+              {project.assignees.map(assign => {
+                return <Text key={assign._id}>{assign.name}</Text>;
+              })}
+            </Text>
           </View>
         );
       })}

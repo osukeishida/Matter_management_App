@@ -13,7 +13,10 @@ export function ProjectcreationScreen() {
   const [name, onChangeProjectname] = React.useState('axios');
   const [description, onChangeDescription] = React.useState('axios');
   const [customer, onChangeCustomer] = React.useState('axois');
-  const [skills, onChangeSkills] = React.useState(['axios']);
+  const [skills = skills.split(','), onChangeSkills] = React.useState([
+    'axios',
+    'php',
+  ]);
   // const [assignees, onChangeAssignees] = React.useState('アサイン');
 
   const tryprojectcreation = async () => {
@@ -61,7 +64,7 @@ export function ProjectcreationScreen() {
       <TextInput
         style={styles.input}
         onChangeText={text => onChangeSkills(text)}
-        value={skills}
+        value={skills.join(',')}
         placeholder="skills"
       />
       {/* <TextInput
