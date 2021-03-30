@@ -3,8 +3,6 @@ import {useSelector, useDispatch} from 'react-redux';
 import {StyleSheet, View, Text, TextInput, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useAxios} from '../network';
-import {RadioButton} from 'react-native-paper';
-import {MaterialCommunityIcons} from 'react-native-vector-icons/MaterialIcons';
 
 export function UsercreationScreen() {
   const navigation = useNavigation();
