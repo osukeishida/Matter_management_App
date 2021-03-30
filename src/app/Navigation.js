@@ -11,6 +11,7 @@ import {AllprojectsScreen} from '../screens/AllprojectsScreen';
 import {ProjecteditScreen} from '../screens/ProjecteditScreen';
 import {AllusersScreen} from '../screens/AllusersScreen';
 import {UsereditScreen} from '../screens/UsereditScreen';
+import {UsercreationScreen} from '../screens/UsercreationScreen';
 const Stack = createStackNavigator();
 
 export function Navigation() {
@@ -30,6 +31,7 @@ export function Navigation() {
             <Stack.Screen name="Projectedit" component={ProjecteditScreen} />
             <Stack.Screen name="Allusers" component={AllusersScreen} />
             <Stack.Screen name="Useredit" component={UsereditScreen} />
+            <Stack.Screen name="Usercreation" component={UsercreationScreen} />
           </>
         ) : (
           <>

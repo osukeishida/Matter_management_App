@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {StyleSheet, View, Text, TextInput, Button} from 'react-native';
-// import {useSelector, useDispatch} from 'react-redux';
+import {Picker} from '@react-native-picker/picker';
 import {useNavigation} from '@react-navigation/native';
 import {useAxios} from '../network';
 
@@ -18,6 +18,7 @@ export function ProjectcreationScreen() {
     'php',
   ]);
   // const [assignees, onChangeAssignees] = React.useState('アサイン');
+  const [users, setUsers] = useState([]);
 
   const tryprojectcreation = async () => {
     //   案件作成
@@ -39,9 +40,23 @@ export function ProjectcreationScreen() {
     }
   };
 
+  useEffect(() => {
+    const tryAllusers = async () => {
+      try {
+        const response = await myAxios.get('/users');
+        console.log('これ成功', response.data);
+        const getUsers = response.data;
+        setUsers(getUsers.data);
+        console.log('げっとyu-za-', getUsers);
+      } catch (err) {
+        console.log('これ失敗', err);
+      }
+    };
+    tryAllusers();
+  }, []);
+
   return (
     <View>
-      {/* TODO key,value作成 */}
       <Text>案件作成フォーム</Text>
       <TextInput
         style={styles.input}
@@ -67,13 +82,24 @@ export function ProjectcreationScreen() {
         value={skills.join(',')}
         placeholder="skills"
       />
-      {/* <TextInput
-        // アサインは記入タイプではなくユーザー一覧選択
-        style={styles.input}
-        onChangeText={text => onChangeAssignees(text)}
-        value={assignees}
-        // placeholder="assignees"
-      /> */}
+      {/* <Text>
+        {users.map(user => {
+          return <Text key={user._id}>{user.name}</Text>;
+        })}
+      </Text> */}
+
+      <Picker selectedValue={users} onValueChange={user => setUsers(user)}>
+        {users.map(user => {
+          return (
+            <Picker.Item
+              key={user._id}
+              label={user.name.toString()} // ここに追加
+              value={user.name}
+            />
+          );
+        })}
+      </Picker>
+
       <Button onPress={tryprojectcreation} title="送信" />
 
       <Button title="戻る" onPress={() => navigation.goBack()} />

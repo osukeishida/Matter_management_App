@@ -31,7 +31,6 @@ export function ProjecteditScreen() {
         customer,
         skills,
       });
-      console.log(response);
       // TODO 案件作成完了ページ作成
       console.log('これ成功', response);
     } catch (err) {

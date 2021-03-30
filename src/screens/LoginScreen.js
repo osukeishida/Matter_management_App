@@ -52,14 +52,13 @@ const LoginScreen = () => {
           //   placeholder="password"
         />
         <Button onPress={tryLogin} title="送信" />
-        <Text>{token}</Text>
         <Button
           title="サインアップ"
           onPress={() => {
             navigation.navigate('Signup');
           }}
         />
-        <Button title="パスワードリセット " onPress={() => {}} />
+        <Button title="TODOパスワードリセット" onPress={() => {}} />
       </View>
     </SafeAreaView>
   );

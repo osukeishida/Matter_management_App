@@ -1,23 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import {Button, View, Text} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {myAxios} from '../network';
 import {TestScheduler} from '@jest/core';
+import UsercreationScreen from './UsercreationScreen';
+import {useAxios} from '../network';
 
 export function AllusersScreen() {
   const navigation = useNavigation();
+  const route = useRoute();
+  const myAxios = useAxios();
   const token = useSelector(state => state.login.token);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const tryAllusers = async () => {
       try {
-        const response = await myAxios.get('/users', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await myAxios.get('/users');
         console.log('これ成功', response.data);
         const getUsers = response.data;
         setUsers(getUsers.data);
@@ -28,6 +28,16 @@ export function AllusersScreen() {
     };
     tryAllusers();
   }, []);
+
+  const tryDelete = async id => {
+    console.log({id});
+    try {
+      const response = await myAxios.delete(`/users/${id}`);
+      console.log('これ成功', response);
+    } catch (err) {
+      console.log('これ失敗', err);
+    }
+  };
 
   return (
     <View>
@@ -46,12 +56,22 @@ export function AllusersScreen() {
                 });
               }}
             />
-            {user.role},{user.email}
+            {user.role},{user.email},
+            <Button
+              title="削除"
+              onPress={() => {
+                console.log(user._id);
+                tryDelete(user._id);
+              }}
+            />
           </Text>
         );
       })}
 
-      <Text>TODO ユーザー追加</Text>
+      <Button
+        title="ユーザー追加"
+        onPress={() => navigation.navigate('Usercreation')}
+      />
       <Button title="戻る" onPress={() => navigation.goBack()} />
     </View>
   );
