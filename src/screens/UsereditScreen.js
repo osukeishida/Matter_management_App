@@ -43,7 +43,8 @@ export function UsereditScreen() {
         onChangeText={text => onChangeUseremail(text)}
         value={email}
       />
-      <Text>roleはトグルスイッチ</Text>
+      <Text>roleはラジオボタン</Text>
+
       <Button onPress={tryUseredit} title="送信" />
       <Button title="戻る" onPress={() => navigation.goBack()} />
     </View>

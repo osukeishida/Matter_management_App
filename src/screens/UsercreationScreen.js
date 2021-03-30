@@ -48,19 +48,6 @@ export function UsercreationScreen() {
         value={role}
       />
 
-      <View>
-        <RadioButton
-          value="first"
-          status={checked === 'first' ? 'checked' : 'unchecked'}
-          onPress={() => setChecked('first')}
-        />
-        <RadioButton
-          value="second"
-          status={checked === 'second' ? 'checked' : 'unchecked'}
-          onPress={() => setChecked('second')}
-        />
-      </View>
-
       <TextInput
         style={styles.input}
         onChangeText={text => onChangePassword(text)}
