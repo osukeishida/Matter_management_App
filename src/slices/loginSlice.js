@@ -5,6 +5,7 @@ export const loginSlice = createSlice({
   initialState: {
     token: '',
     username: '',
+    role: false,
   },
   reducers: {
     login: (state, action) => {
@@ -14,10 +15,14 @@ export const loginSlice = createSlice({
     logout: (state, action) => {
       state.token = '';
     },
+    isadmin: (state, action) => {
+      console.log(action);
+      state.role = action.payload;
+    },
   },
 });
 
-export const {login, logout} = loginSlice.actions;
+export const {login, logout, isadmin} = loginSlice.actions;
 
 export const {reducer: loginReducer} = loginSlice;
 

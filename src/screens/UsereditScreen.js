@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, Button, View, Text, TextInput} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {useAxios} from '../network';
 
@@ -11,6 +11,7 @@ export function UsereditScreen() {
   const token = useSelector(state => state.login.token);
   const [name, onChangeUsername] = React.useState(route.params.name);
   const [email, onChangeUseremail] = React.useState(route.params.email);
+  const [role, onChangeUserrole] = React.useState(route.params.role);
 
   console.log(route.params);
 
@@ -20,7 +21,7 @@ export function UsereditScreen() {
       const response = await myAxios.put(`/users/${route.params.id}`, {
         name,
         email,
-        // role,
+        role,
       });
       console.log(response);
       console.log(response);
@@ -43,7 +44,12 @@ export function UsereditScreen() {
         onChangeText={text => onChangeUseremail(text)}
         value={email}
       />
-      <Text>roleはラジオボタン</Text>
+
+      <TextInput
+        style={styles.input}
+        onChangeText={text => onChangeUserrole(text)}
+        value={role}
+      />
 
       <Button onPress={tryUseredit} title="送信" />
       <Button title="戻る" onPress={() => navigation.goBack()} />

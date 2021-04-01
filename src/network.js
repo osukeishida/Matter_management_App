@@ -1,6 +1,4 @@
 import axios from 'axios';
-import {View} from 'react-native';
-import * as React from 'react';
 import {useSelector} from 'react-redux';
 
 export const myAxios = axios.create({

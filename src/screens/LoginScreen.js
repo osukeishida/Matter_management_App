@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React from 'react';
+import {useDispatch} from 'react-redux';
 import {
   StyleSheet,
   SafeAreaView,
@@ -15,7 +15,6 @@ import {useNavigation} from '@react-navigation/native';
 const LoginScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const token = useSelector(state => state.login.token);
   const [email, onChangeEmail] = React.useState('ishida.o@impl.co.jp');
   const [password, onChangePassword] = React.useState('aaaaaaaa');
 
