@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {StyleSheet, View, Text, TextInput, Button} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {useNavigation} from '@react-navigation/native';

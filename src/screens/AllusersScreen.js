@@ -1,17 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {Button, View, Text} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {myAxios} from '../network';
-import {TestScheduler} from '@jest/core';
-import UsercreationScreen from './UsercreationScreen';
+import {useNavigation} from '@react-navigation/native';
 import {useAxios} from '../network';
 
 export function AllusersScreen() {
   const navigation = useNavigation();
-  const route = useRoute();
   const myAxios = useAxios();
-  const token = useSelector(state => state.login.token);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
