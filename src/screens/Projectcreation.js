@@ -18,7 +18,11 @@ export function ProjectcreationScreen() {
     'php',
   ]);
   // const [assignees, onChangeAssignees] = React.useState('アサイン');
+
+  // APIからとってきた全User情報配列を保持するためのState
   const [users, setUsers] = useState([]);
+  // Pickerで何が選択されているか（userのID）を管理するState
+  const [selectedValue, setSelectedValue] = useState(undefined);
 
   const tryprojectcreation = async () => {
     //   案件作成
@@ -29,7 +33,7 @@ export function ProjectcreationScreen() {
         description,
         customer,
         skills,
-        // assignees,
+        assignees: [selectedValue],
       });
       // console.log(response);
 
@@ -46,7 +50,10 @@ export function ProjectcreationScreen() {
         const response = await myAxios.get('/users');
         console.log('これ成功', response.data);
         const getUsers = response.data;
-        setUsers(getUsers.data);
+
+        console.log('これ配列？これこれ', getUsers.data);
+        setUsers(getUsers.data); // 変更前　これは配列
+        // setUsers(getUsers); //変更後
         console.log('げっとyu-za-', getUsers);
       } catch (err) {
         console.log('これ失敗', err);
@@ -88,13 +95,18 @@ export function ProjectcreationScreen() {
         })}
       </Text> */}
 
-      <Picker selectedValue={users} onValueChange={user => setUsers(user)}>
+      <Picker
+        selectedValue={selectedValue}
+        onValueChange={user => {
+          console.log(user);
+          setSelectedValue(user);
+        }}>
         {users.map(user => {
           return (
             <Picker.Item
               key={user._id}
-              label={user.name.toString()} // ここに追加
-              value={user.name}
+              label={user.name.toString()}
+              value={user._id}
             />
           );
         })}

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {StyleSheet, View, Text, TextInput, Button} from 'react-native';
+import {StyleSheet, View, Text, TextInput, Button, Radio} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useAxios} from '../network';
 
@@ -27,7 +27,7 @@ export function UsercreationScreen() {
       console.log('これ失敗', err);
     }
   };
-  const [checked, setChecked] = React.useState('first');
+
   return (
     <View>
       <Text>ユーザー作成フォーム</Text>
@@ -42,12 +42,10 @@ export function UsercreationScreen() {
         value={email}
       />
       <TextInput
-        // TODO roleはトグルスイッチに
         style={styles.input}
         onChangeText={text => onChangeRole(text)}
         value={role}
       />
-
       <TextInput
         style={styles.input}
         onChangeText={text => onChangePassword(text)}
